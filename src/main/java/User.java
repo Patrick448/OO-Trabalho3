@@ -42,26 +42,60 @@ public class User {
         return followers;
     }
 
-    public void addFollower(User follower){
-        this.followers.add(follower);
-        follower.addToFollowing(this);
+    public List<User> getFollowing() {
+        return following;
     }
 
-    public void addToFollowing(User following){
-        this.following.add(following);
+    //todo: considerar o caso em que o usuário quer remover o seguidor
+
+    private void addFollower(User follower){
+        this.followers.add(follower);
+    }
+
+    public void follow(User user){
+        this.following.add(user);
+        user.addFollower(this);
+    }
+
+    public void unfollow(String userName){
+        for(User user: following){
+            if(user.userName.equals(userName)){
+                following.remove(user);
+                user.removeFollower(this);
+            }
+        }
+    }
+
+    private void removeFollower(User user){
+        this.following.remove(user);
     }
 
     public Notebook getNotebook(int id){
-        return new Notebook();
+        for(Notebook notebook: notebooks){
+            if(id ==notebook.getId()){
+                return notebook;
+            }
+        }
+        return null;
     }
 
     public Notebook getNotebook(String name){
-        return new Notebook();
+        for(Notebook notebook: notebooks){
+            if(name.equals(notebook.getName())){
+                return notebook;
+            }
+        }
+        return null;
     }
 
-    public void createNotebook(String name){
-        Notebook notebook = new Notebook(name);
+
+    public Notebook createNotebook(String name){
+        Notebook notebook = new Notebook(name, this);
         this.notebooks.add(notebook);
+
+        return notebook;
     }
+
+
 
 }
