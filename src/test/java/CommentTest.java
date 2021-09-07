@@ -36,7 +36,7 @@ class CommentTest {
     @Test
     void deveRetornarExcecaoAuthorNuloConstrutor() {
         try{
-            Comment comment = new Comment(new TextBody(), "05-09-2021",null);
+            Comment comment = new Comment(new TextBody("abc"), "05-09-2021",null);
             fail();
         }catch(IllegalArgumentException e){
             assertEquals("author argument must not be null.", e.getMessage());
@@ -47,7 +47,7 @@ class CommentTest {
     void deveRetornarExcecaoDateVazioConstrutor() {
         try{
             User user = new User("Patrick", "@patrick");
-            Comment comment = new Comment(new TextBody(), "" ,user);
+            Comment comment = new Comment(new TextBody("abc"), "" ,user);
             fail();
         }catch(IllegalArgumentException e){
             assertEquals("date argument must not be empty or null.", e.getMessage());

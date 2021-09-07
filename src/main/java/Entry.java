@@ -19,6 +19,7 @@ public class Entry implements TextDisplay{
         this.author = author;
     }
 
+
     public Entry(User author) {
         if(author==null){
             throw new IllegalArgumentException("author argument must not be null.");
