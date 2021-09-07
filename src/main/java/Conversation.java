@@ -7,6 +7,12 @@ public class Conversation{
     private List<Letter> letters;
 
     public Conversation(User owner, User correspondent) {
+        if(owner==null){
+            throw new IllegalArgumentException("owner argument must not be null.");
+        }
+        if(correspondent==null){
+            throw new IllegalArgumentException("correspondent argument must not be null.");
+        }
         this.owner = owner;
         this.correspondent = correspondent;
         this.letters = new ArrayList<Letter>();
@@ -16,29 +22,16 @@ public class Conversation{
         return letters;
     }
 
-    /*public Letter createLetterOutgoing(TextBody textBody){
-        Letter letter = new Letter(owner, correspondent, textBody);
-        this.letters.add(letter);
-        return letter;
-    }*/
 
     public void addLetter(Letter letter){
+        if(letter==null){
+            throw new IllegalArgumentException("letter argument must not be null.");
+        }
         this.letters.add(letter);
     }
-
-    /*public Letter createLetterIncoming(TextBody textBody){
-        Letter letter = new Letter(correspondent, owner, textBody);
-        this.letters.add(letter);
-        return letter;
-    }*/
-
 
     public User getOwner() {
         return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
     }
 
     public User getCorrespondent() {
@@ -49,7 +42,4 @@ public class Conversation{
         return correspondent.getUserName();
     }
 
-    public void setCorrespondent(User correspondent) {
-        this.correspondent = correspondent;
-    }
 }

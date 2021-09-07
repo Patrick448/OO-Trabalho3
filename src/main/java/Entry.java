@@ -2,14 +2,9 @@ public class Entry implements TextDisplay{
     private TextBody textBody;
     private String date;
     private String title;
-    private boolean statusPublic;
-    private int id;
+    private boolean statusPublic=false;
     private static int PREVIEW_LENGTH = 30;
     private User author;
-
-
-    public Entry() {
-    }
 
     public Entry(String title, User author) {
         if(author==null){
@@ -17,8 +12,8 @@ public class Entry implements TextDisplay{
         }
         this.title = title;
         this.author = author;
-    }
 
+    }
 
     public Entry(User author) {
         if(author==null){
@@ -26,6 +21,7 @@ public class Entry implements TextDisplay{
         }
 
         this.author = author;
+
     }
 
     @Override
@@ -57,20 +53,8 @@ public class Entry implements TextDisplay{
         this.title = title;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public User getAuthor() {
         return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
     }
 
     public boolean isPublic() {

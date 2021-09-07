@@ -15,6 +15,16 @@ class EntryTest {
     }
 
     @Test
+    void deveRetornarExcecaoAuthorNuloConstrutor2() {
+        try{
+            Entry entry = new Entry(null);
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("author argument must not be null.", e.getMessage());
+        }
+    }
+
+    @Test
     void deveRetornarPreVizualizacao() {
         User user = new User("Patrick", "@patrick");
 

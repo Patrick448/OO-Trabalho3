@@ -205,5 +205,20 @@ class UserTest {
         }
     }
 
+    @Test
+    void deveRetornarNotebookBuscadoEncontrado(){
+        User user1 = new User("José", "@zezinho");
+        Notebook notebook=user1.createNotebook("Caderno1");
+
+        assertEquals(notebook, user1.getNotebook("Caderno1"));
+    }
+
+    @Test
+    void deveRetornarNotebookBuscadoNaoEncontrado(){
+        User user1 = new User("José", "@zezinho");
+        Notebook notebook=user1.createNotebook("Caderno1");
+
+        assertEquals(null, user1.getNotebook("Caderno2"));
+    }
 
 }

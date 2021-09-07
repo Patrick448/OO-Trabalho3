@@ -7,8 +7,6 @@ public class Notebook {
     private List<Entry> entries;
     private boolean statusPublic;
     private User author;
-    private int id;
-
 
     public Notebook(String name, User author) {
 
@@ -41,18 +39,6 @@ public class Notebook {
         return entries;
     }
 
-    public Entry getEntry(int id){
-        for(Entry entry: entries){
-            if(id ==entry.getId()){
-                return entry;
-            }
-        }
-        return null;
-    }
-
-    public int getId() {
-        return id;
-    }
 
     public void setStatusPublic(boolean statusPublic){
         this.statusPublic = statusPublic;
@@ -74,12 +60,6 @@ public class Notebook {
         return result;
     }
 
-    public void addEntry(Entry entry){
-        if(entry==null){
-            throw new IllegalArgumentException("Argument entry must not be null.");
-        }
-        this.entries.add(entry);
-    }
 
     public Entry createEntry(String title){
         Entry entry = new Entry(title, this.author);

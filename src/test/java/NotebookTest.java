@@ -40,8 +40,7 @@ class NotebookTest {
         User user = new User("Patrick", "@patrick");
         Notebook notebook = new Notebook(user);
 
-        Entry entry = new Entry();
-        notebook.addEntry(entry);
+        Entry entry = notebook.createEntry("abc");
 
         List<Entry> entries =Arrays.asList(entry);
 
@@ -53,10 +52,9 @@ class NotebookTest {
         User user = new User("Patrick", "@patrick");
         Notebook notebook = new Notebook(user);
 
-        Entry entry = new Entry();
-        Entry entry2 = new Entry();
-        notebook.addEntry(entry);
-        notebook.addEntry(entry2);
+        Entry entry = notebook.createEntry("abc");
+        Entry entry2 = notebook.createEntry("abc");
+
 
         List<Entry> entries =Arrays.asList(entry, entry2);
 
@@ -91,12 +89,9 @@ class NotebookTest {
         User user = new User("Patrick", "@patrick");
         Notebook notebook = new Notebook(user);
 
-        Entry entry = new Entry("Entry1", user);
-        Entry entry2 = new Entry("Poem2", user);
-        Entry entry3 = new Entry("Just a regular entry", user);
-        notebook.addEntry(entry);
-        notebook.addEntry(entry2);
-        notebook.addEntry(entry3);
+        Entry entry = notebook.createEntry("Entry1");
+        Entry entry2 = notebook.createEntry("Poem2");
+        Entry entry3 = notebook.createEntry("Just a regular entry");
 
         List<Entry> entries =Arrays.asList(entry, entry3);
 

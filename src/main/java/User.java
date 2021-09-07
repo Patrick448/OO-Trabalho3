@@ -71,15 +71,6 @@ public class User {
         user.following.remove(this);
     }
 
-    public Notebook getNotebook(int id){
-        for(Notebook notebook: notebooks){
-            if(id ==notebook.getId()){
-                return notebook;
-            }
-        }
-        return null;
-    }
-
     public Notebook getNotebook(String name){
         for(Notebook notebook: notebooks){
             if(name.equals(notebook.getName())){
@@ -131,27 +122,6 @@ public class User {
         return conversation;
     }
 
-    /*public void sendLetter(User correspondent, TextBody textBody){
-
-        Conversation conversation = getConversationWith(correspondent);
-
-        if(conversation==null){
-            conversation = this.createConversation(correspondent);
-        }
-        //conversation.createLetterOutgoing(textBody);
-
-        correspondent.receiveLetter(this, textBody);
-
-    }
-
-    public void receiveLetter(User sender, TextBody textBody){
-        Conversation conversation = getConversationWith(sender);
-
-        if(conversation==null){
-            conversation = this.createConversation(sender);
-        }
-       // conversation.createLetterIncoming(textBody);
-    }*/
 
     public Conversation getConversationWith(User user){
         for(Conversation conversation: conversations){

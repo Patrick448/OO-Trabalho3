@@ -18,33 +18,69 @@ class ConversationTest {
         assertEquals(new ArrayList<Letter>(), conversation.getLetters());
     }
 
-   /* @Test
+    @Test
     void deveRetornarListaLetters1Elemento(){
+
         User owner = new User("José", "@zezinho");
         User correspondent = new User("Maria", "@maria");
+
+        Letter letter = new Letter(owner, correspondent, new TextBody(), "01-01-2020");
         Conversation conversation = new Conversation(owner, correspondent);
-        TextBody textBody = new TextBody("blá blá blá");
+        conversation.addLetter(letter);
 
-        Letter letter = conversation.createLetterOutgoing(textBody);
-
-        List<Letter> letters = Arrays.asList(letter);
-
-        assertEquals(letters, conversation.getLetters());
+        assertEquals(Arrays.asList(letter), conversation.getLetters());
     }
 
     @Test
-    void deveRetornarListaLetters2Elemento(){
+    void deveRetornarListaLettersMultiplosElementos(){
+
         User owner = new User("José", "@zezinho");
         User correspondent = new User("Maria", "@maria");
+
+        Letter letter = new Letter(owner, correspondent, new TextBody(), "01-01-2020");
+        Letter letter2 = new Letter(owner, correspondent, new TextBody(), "01-01-2020");
         Conversation conversation = new Conversation(owner, correspondent);
-        TextBody textBody = new TextBody("blá blá blá");
+        conversation.addLetter(letter);
+        conversation.addLetter(letter2);
 
-        Letter letter = conversation.createLetterOutgoing(textBody);
-        Letter letter2 = conversation.createLetterOutgoing(textBody);
+        assertEquals(Arrays.asList(letter, letter2), conversation.getLetters());
+    }
 
-        List<Letter> letters = Arrays.asList(letter, letter2);
+    @Test
+    void deveRetornarExcecaoOwnerNuloConstrutor() {
+        try{
+            User user = new User("José", "@zezinho");
+            Conversation conversation = new Conversation(null, user);
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("owner argument must not be null.", e.getMessage());
+        }
+    }
 
-        assertEquals(letters, conversation.getLetters());
-    }*/
+    @Test
+    void deveRetornarExcecaoCorrespondentNuloConstrutor() {
+        try{
+            User user = new User("José", "@zezinho");
+            Conversation conversation = new Conversation(user, null);
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("correspondent argument must not be null.", e.getMessage());
+        }
+    }
+
+    @Test
+    void deveRetornarExcecaoAddLetterNulo() {
+        try{
+            User user = new User("José", "@zezinho");
+            User user2 = new User("José", "@zezinho");
+
+            Conversation conversation = new Conversation(user, user2);
+            conversation.addLetter(null);
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("letter argument must not be null.", e.getMessage());
+        }
+    }
+
 
 }

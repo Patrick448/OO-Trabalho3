@@ -18,4 +18,40 @@ class MessengerTest {
         assertEquals( Arrays.asList(letter), user2.getConversationWith(user1).getLetters());
 
     }
+
+    @Test
+    void deveRetornarExcecaoRecipientNuloConstrutor() {
+        try{
+            User user1 = new User("a", "b");
+            TextBody textBody = new TextBody("abcde");
+            Messenger.sendLetter(user1, null, textBody, "21-09-2021");
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("recipient argument must not be null.", e.getMessage());
+        }
+    }
+
+    @Test
+    void deveRetornarExcecaoSenderNuloConstrutor() {
+        try{
+            User user1 = new User("a", "b");
+            TextBody textBody = new TextBody("abcde");
+            Messenger.sendLetter(null, user1, textBody, "21-09-2021");
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("sender argument must not be null.", e.getMessage());
+        }
+    }
+
+    @Test
+    void deveRetornarExcecaoTextBodyNuloConstrutor() {
+        try{
+            User user1 = new User("a", "b");
+            User user2 = new User("a", "b");
+            Messenger.sendLetter(user2, user1, null, "21-09-2021");
+            fail();
+        }catch(IllegalArgumentException e){
+            assertEquals("textBody argument must not be null.", e.getMessage());
+        }
+    }
 }
